@@ -1,0 +1,27 @@
+﻿<Graph ClassName="DemoCustomizationPlugIn" Source="#CDATA" IsNew="True" FileType="NewFile">
+    <CDATA name="Source"><![CDATA[using System;
+using PX.Data;
+using Customization;
+
+namespace DemoProject
+{
+	//Customization plugin is used to execute custom actions after customization project was published	
+	public class DemoCustomizationPlugIn : CustomizationPlugin
+	{
+		//This method executed right after website files were updated, but before website was restarted
+		//Method invoked on each cluster node in cluster environment
+		//Method invoked only if runtimecompilation is enabled
+		//Do not access custom code published to bin folder, it may not be loaded yet
+    	public override void OnPublished()
+		{
+			this.WriteLog("OnPublished Event");
+		}
+
+		//This method executed after customization was published and website was restarted.	
+		public override void UpdateDatabase()
+		{
+			this.WriteLog("UpdateDatabase Event");
+		}
+	}
+}]]></CDATA>
+</Graph>
